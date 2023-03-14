@@ -4,11 +4,11 @@ async function main() {
   console.log("Deploying contracts with the account:", deployer.address);
   console.log("Account balance:", (await deployer.getBalance()).toString());
   
-  const CASINO = await ethers.getContractFactory("Casino");
-  const casino = await CASINO.deploy()
+  const Lisprocoin = await ethers.getContractFactory("Lisprocoin");
+  const lisprocoin = await Lisprocoin.deploy()
 
   // Save copies of each contracts abi and address to the frontend.
-  saveFrontendFiles(casino, "Casino");
+  saveFrontendFiles(lisprocoin, "Lisprocoin");
 }
 
 function saveFrontendFiles(contract, name) {
@@ -31,7 +31,11 @@ function saveFrontendFiles(contract, name) {
     JSON.stringify(contractArtifact, null, 2)
   );
 }
+npx hardhat run src/backend/scripts/deploy.js --network polygon
 
+Deploying contracts with the account: https://bscscan.com/token/0xe62a9bc6ede534e18dd2793dcaf5a2b6df112180
+Account balance: 19999999999999999999999999999999999999999999999999999999000
+Token address: 0xE62A9bc6eDe534E18Dd2793Dcaf5A2B6df112180
 main()
   .then(() => process.exit(0))
   .catch(error => {
